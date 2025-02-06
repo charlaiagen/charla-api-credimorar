@@ -1,0 +1,16 @@
+[project]
+name = "charla-api-extraction-imob-fin"
+version = "0.1.0"
+description = "Projeto para extração e tabulação de dados de propostas de financiamento imobiliário."
+readme = "README.md"
+requires-python = ">=3.11.11"
+dependencies = [
+    "docling>=2.18.0",
+    "openpyxl>=3.1.5",
+    "pydantic-ai[logfire]>=0.0.22",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+]

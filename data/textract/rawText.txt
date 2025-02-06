@@ -1,0 +1,262 @@
+
+bradesco
+Proposta de Financiamento Imobiliário - Comprador Pessoa Física
+Dados do 1° Comprador
+Nome Completo (sem abreviações)
+CPF/MF
+NAGYLA POLLYANNA FERREIRA CRUZ
+926.064.231-00
+Profissão
+E-mail
+EMPRESÁRIA/AGRICULTURA
+inagyla_pollyanna@hotmail.com
+Estado Civil
+CASADA
+Campo obrigatório para quem não é casado. Vive em união estável?
+Sim
+Não
+É funcionário da Organização Bradesco ou parente de primeiro grau (pai ou filho)?
+Se sim, informe código funcional:
+Dados do 2° Comprador
+Nome Completo (sem abreviações)
+CPF/MF
+EDER CARLOS MANDOTTI
+026.197.799-79
+Profissão
+E-mail
+EMPRESÁRIO/AGRICULTOR
+eder.mandotti@gmail.com
+Estado Civil
+CASADO
+Campo obrigatório para quem não é casado. Vive em união estável?
+Sim
+Não
+É funcionário da Organização Bradesco ou parente de primeiro grau (pai ou filho)?
+Se sim, informe código funcional:
+Dados do 3° Comprador
+Nome Completo (sem abreviações)
+CPF/MF
+Profissão
+E-mail
+Estado Civil
+Campo obrigatório para quem não é casado. Vive em união estável?
+Sim
+Não
+É funcionário da Organização Bradesco ou parente de primeiro grau (pai ou filho)?
+Se sim, informe código funcional:
+Dados do 4° Comprador
+Nome Completo (sem abreviações)
+CPF/MF
+Profissão
+E-mail
+Estado Civil
+Campo obrigatório para quem não é casado. Vive em união estável?
+Sim
+Não
+É funcionário da Organização Bradesco ou parente de primeiro grau (pai ou filho)?
+Se sim, informe código funcional:
+Mod.: 4840-014E
+Versão: 12/2023
+1/4
+bradesco
+Dados Bancários - Pagamento das Prestações
+Autorizo o débito/ pagamento do valor das parcelas por meio de:
+Débito em conta corrente Bradesco abaixo indicada
+Boleto Bancário
+Para opção de pagamento das parcelas por meio débito em conta corrente, informar:
+Conta de titularidade do Comprador que autorizou o débito:
+Nome
+NAGYLA POLLYANNA FERREIRA CRUZ
+Agência Débito Parcela
+Conta Débito Parcela
+Dígito Conta
+1066
+2957
+2
+Autorizo utilizar o limite de crédito, incluindo o Cheque Especial, se contratados, quando não houver
+saldo em conta;
+Autorizo o débito do valor da(s) parcela(s) vencida(s), inclusive de valor(es) parcial(is). (Os
+encargos serão incorporados nas parcelas seguintes, conforme detalhado em contrato)
+Dados do(s) 1° Vendedor(es) Pessoa Física/Pessoa Jurídica
+Nome Completo / Razão Social (sem abreviações)
+CPF/CNPJ/MF
+JOÃO PIMENTA DA SILVA JUNIOR
+029.176.851-23
+Profissão
+E-mail
+EMPRESÁRIO
+joaopimenta@outlook.com.br
+Estado Civil
+SOLTEIRO
+Campo obrigatório para quem não é casado. Vive em união estável?
+Sim
+Não
+Forma de Recebimento
+Conta Corrente Bradesco
+TED
+Banco
+Agência
+Dígito
+Conta
+Dígito
+BRADESCO
+1066
+1524
+5
+Dados do(s) 2° Vendedor(es) Pessoa Física/Pessoa Jurídica
+Nome Completo / Razão Social (sem abreviações)
+CPF/CNPJ/MF
+Profissão
+E-mail
+Estado Civil
+Campo obrigatório para quem não é casado. Vive em união estável?
+Sim
+Não
+Forma de Recebimento
+Conta Corrente Bradesco
+TED
+Banco
+Agência
+Dígito
+Conta
+Dígito
+Dados do Imóvel a ser Financiado
+Endereço
+Número
+Complemento
+ARSO 24 - CONDOMINIO ALPHAVILLE PALMAS 2, RUA 09
+S/N
+QD C2, LOTE 31
+Quantidade de Vagas
+N° de Vagas
+Quantidade Depósito / Box
+N° Depósito / Box
+1
+1
+Mod.: 4840-014E
+Versão: 12/2023
+2/4
+bradesco
+Condições da Operação (todos os itens deste bloco são de preenchimento obrigatório)
+Valor da Compra/Venda
+Valor de Financiamento
+R$ $ 2.600.000,00
+R$ 1.800.000,00
+Irá utilizar o FGTS
+Prazo de Amortização
+Sim
+Não
+420 MESES
+Dia base para pagamento das prestações (De 01 a 28)
+30 DIAS APÓS ASSINATURA DO CONTRATO
+Sistema de Amortização:
+SAC Sistema de Amortização Constante
+Tabela PRICE
+Deseja incluir as despesas cartorárias no financiamento
+Sim
+Não
+*Valor do financiamento das despesas cartorárias é limitado a 5% do valor de compra e venda
+do imóvel e será liberado no ato da assinatura do contrato.
+Aceite Registro Eletrônico (Assinatura Digital)
+O(s) Comprador(es) aceita(m) a opção de realizar(em) a(s) assinatura(s) e o registro do contrato em
+formato digital no Serviço de Registro de Imóveis, nos termos da MP 2.200-2/2001, art. 10, § 10.*
+Sim
+Não
+* Optando por esse formato, o(s) Comprador(es) e Vendedor(es) precisarão preencher o
+formulário 4840-1217 Declaração das Partes Aceite Registro Eletrônico (Assinatura Digital).
+Opção não disponível para operações com "Interveniente Quitante" (quando outro banco tem
+que conceder quitação no contrato).
+Informações Adicionais (se assim aplicável)
+Processo sendo conduzido por Parceiro Imobiliário do Bradesco? Se sim favor informar
+Nome
+CNPJ/MF
+Declarações do (s) Comprador (es)
+O(s) Comprador(es) declara(m) que:
+(i) no caso de irregularidades nos documentos relativos ao imóvel e ao(s) Vendedor(es), a concessão do
+financiamento e/ou a utilização do FGTS poderá(ão) ser negada(s) ou poderão ser solicitados outros
+documentos para esclarecimento;
+(ii) obteve previamente do(s) Vendedor(es) informações sobre os documentos e certidões do imóvel e, em
+vista do artigo 54 da Lei n° 13.097/2015, poderá dispensar a exibição das certidões previstas no § 2° do
+artigo 1° da Lei n° 7.433/85 e a obtenção da Certidão Negativas de Débitos Trabalhistas CNDT, nos termos
+do artigo 642-A da CLT, ciente(s) da possibilidade de obtenção prévia, gratuita e eletrônica da referida
+CNDT, isentando o Bradesco de qualquer responsabilidade. o(s) Comprador(es) concorda(m) com a
+dispensa?
+Sim
+Não
+E com as dispensas abaixo?
+Declaração de inexistência de débitos condominiais:
+Sim
+Não
+Certidão Negativa de Impostos e Taxas Municipais:
+Sim
+Não
+Declaração de regularidade de foro (para imóveis foreiros):
+Sim
+Não
+Em caso de exigências do Serviço de Registro de Imóveis da comarca do imóvel, os documentos
+acima não poderão ser dispensados.
+(iii) em caso de cancelamento do contrato, os valores creditados em favor do(s) Comprador(es) para
+financiamento do ITBI (Imposto de Transmissão de Bens Imóveis) e pagamento das despesas cartorárias
+deverão ser devolvidos ao Banco Bradesco S.A., mediante débito na conta-corrente que o(s)
+Comprador(es), desde já, autoriza o Bradesco a realizar. Se o saldo não for suficiente para a realização
+Mod.: 4840-014E
+Versão: 12/2023
+3/4
+bradesco
+do débito, o débito poderá recair sobre eventuais limites de crédito mantidos na conta do(s)
+Comprador(es) informada neste documento, se contratados, inclusive por meio de lançamento parcial;
+(iv) que está(ão) ciente(s) e concorda(m) que o Banco Bradesco S.A. não se compromete com a
+aprovação do financiamento e também não será responsável por qualquer importância paga
+anteriormente, a qualquer título, ao Vendedor(es); por eventuais multas e despesas com a rescisão do
+Instrumento Particular de Compromisso de Compra e Venda do imóvel firmado com o(s) Vendedor(es) e;
+pelos prazos fixados com o(s) Vendedor(es) para pagamento do preço de compra e venda, entrega das
+chaves do imóvel e recebimento de ITBI ou Laudêmio.
+(v) para as operações de financiamento residencial POUPANÇA MAIS, a taxa de juros é flutuante, o
+rendimento será calculado conforme a Lei n° 12.703/2012 e a TR (Taxa Referencial) atualizará o saldo
+devedor das operações, sendo que o(s) Comprador(es) foi(ram) suficientemente informado(a,s) que
+neste tipo de indexador existe a imprevisibilidade do valor das prestações, em razão da variação da
+remuneração da poupança, fazendo com que exista a possibilidade de incidir sobre a operação taxa de
+juros superior à contratada inicialmente, tendo como consequência, o aumento do valor da prestação.
+Importante
+Para compradores casados sob o regime de separação total de bens, indicar por declaração adicional
+respectivos percentuais de aquisição do imóvel. Caso não seja declarado ou o regime seja o
+da
+comunhão parcial ou universal de bens será considerado automaticamente percentual de 50% do
+imóvel para cada um.
+O Bradesco declara que cumpre toda a legislação aplicável sobre segurança da informação, privacidade e
+proteção de dados, em observância a Lei Geral de Proteção de Dados (Lei Federal n° 13.709/2018) e demais
+normas setoriais ou gerais sobre o tema, comprometendo-se a tratar os dados pessoais coletados por
+meio deste instrumento para a sua execução e somente nos estritos limites e finalidades aqui previstos,
+como controlador de dados pessoais ou por meio de seus operadores, nos termos da lei aplicável.
+Local PALMAS
+Data 16/10/2024
+1°
+2° Comprodant
+Documento assinado digitalmente
+Documento assinado digitalmente
+gov.br
+NAGYLA POLLYANNA FERREIRA CRUZ
+gov.br
+EDER CARLOS MANDOTTI
+Data: 17/10/2024 09:34:08-0300
+Data: 17/10/2024 09:38:13-0300
+Verifique em https://validar.iti.gov.br
+Verifique em https://validar.iti.gov.br
+EDER CARLOS MANDOTTI
+NAGYLA POLLYANNA FERREIRA CRUZ
+30 Comprador
+4° Comprador
+Fone Fácil Bradesco
+SAC Alô Bradesco: 0800 704 8383
+Consultas, Informações e Serviços Transacionais.
+Deficiência Auditiva ou de Fala: 0800 722 0099
+Capitais e Regiões Metropolitanas: 4002 0022
+Demais Localidades: 0800 570 0022
+Reclamações, Cancelamentos e Informações Gerais.
+Atendimento 24 horas, 7 dias por semana.
+Atendimento 24 horas, 7 dias por semana.
+Ouvidoria: 0800 727 9933 Se não ficar satisfeito com a solução apresentada,
+contate a Ouvidoria, das 09h às 18h, de 2ª a 6ª feira, exceto feriados.
+Mod.: 4840-014E
+Versão: 12/2023
+4/4

@@ -1,5 +1,29 @@
 [system]
-extractor = '''
+financial_institution_detector = '''
+<metadata>
+version = "0.1.0"
+author = "Bruno Bertholdi"
+last_updated = "2025-02-11"
+</metadata>
+
+<persona>
+Você é um detector preciso de instituições financeiras em textos.
+</persona>
+
+<goal>
+Analisar o <raw-text> e identificar a instituição financeira mencionada ou relacionada. Responder apenas com o nome da instituição. Se não identificada, responder "Não identificado".
+</goal>
+
+<instructions>
+- Identificar bancos, cooperativas de crédito, financeiras e outras instituições do setor.
+- Considerar menções diretas, descrições de logotipos e informações contextuais.
+- Responder de forma concisa, apenas com o nome da instituição.
+- Não incluir explicações ou informações adicionais na resposta.
+</instructions>
+'''
+
+
+bradesco_data_extractor = '''
 <metadata>
 version = "0.1.0"
 author = "Bruno Bertholdi"
@@ -30,7 +54,18 @@ Eu não possuo qualquer interface com o usuário, apenas com o documento em si.
 '''
 
 [user]
-extractor = '''
+financial_institution_detector = '''
+<raw-text>
+{input}
+</raw-text>
+
+<user-instructions>
+Identifique e retorne apenas o nome da instituição financeira mencionada em <raw-text> e me retorne em uma string.
+</user-instructions>
+'''
+
+
+bradesco_data_extractor = '''
 <raw-text>
 {input}
 </raw-text>
@@ -132,3 +167,4 @@ Identifique e extraia os seguintes dados de <raw-text>
     - Certidão Negativa de Impostos e Taxas Municipais: # Este campo é identificado por um checkbox. As opções de preenchimento são "Sim" ou "Não".
     - Declaração de regularidade de foro (para imóveis foreiros): # Este campo é identificado por um checkbox. As opções de preenchimento são "Sim" ou "Não".
 '''
+

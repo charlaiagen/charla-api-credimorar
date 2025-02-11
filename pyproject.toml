@@ -1,5 +1,5 @@
 [project]
-name = "charla-api-extraction-imob-fin"
+name = "charla-api-credimorar"
 version = "0.1.0"
 description = "Projeto para extração e tabulação de dados de propostas de financiamento imobiliário."
 readme = "README.md"

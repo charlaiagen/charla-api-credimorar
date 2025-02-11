@@ -2,18 +2,16 @@ import logging
 from pathlib import Path
 import fitz
 import numpy as np
-from checkbox_detector import CheckboxDetector
-from ocr_pipeline import OcrPipeline
+import os
+import sys
 
-def create_output_directories():
-    """Create all necessary output directories."""
-    directories = [
-        "output/ocr_results",
-        "output/debug_images"
-    ]
-    for directory in directories:
-        Path(directory).mkdir(parents=True, exist_ok=True)
-        logging.info(f"Created directory: {directory}")
+# Add project root to Python path for imports
+project_root = str(Path(__file__).parent.parent.absolute())
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+from pdf_parsing.checkbox_detector import CheckboxDetector
+from pdf_parsing.ocr_pipeline import OcrPipeline
 
 def process_document(input_file, tesseract_path):
     """
@@ -22,6 +20,12 @@ def process_document(input_file, tesseract_path):
     Args:
         input_file (str): Path to the input PDF file
         tesseract_path (str): Path to the Tesseract executable
+
+    Returns:
+        tuple: (success, markdown_content, error)
+            - success (bool): True if processing was successful
+            - markdown_content (str): Markdown formatted string with results
+            - error (str): Error message if processing failed
     """
     try:
         # Initialize components
@@ -29,7 +33,6 @@ def process_document(input_file, tesseract_path):
         if not input_path.exists():
             raise FileNotFoundError(f"Input file not found: {input_path}")
 
-        create_output_directories()
         detector = CheckboxDetector()
         pipeline = OcrPipeline(tesseract_path)
 
@@ -46,15 +49,11 @@ def process_document(input_file, tesseract_path):
                 pix = page.get_pixmap(matrix=fitz.Matrix(2, 2))
                 img_array = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, pix.n)
 
-                checkboxes, debug_path = detector.detect_checkboxes(
-                    img_array,
-                    output_dir=f"output/debug_images/page_{page_num + 1}"
-                )
+                checkboxes = detector.detect_checkboxes(img_array)
 
                 checkbox_results.append({
                     'page': page_num + 1,
-                    'checkboxes': checkboxes,
-                    'debug_image': debug_path
+                    'checkboxes': checkboxes
                 })
 
         finally:
@@ -64,10 +63,10 @@ def process_document(input_file, tesseract_path):
         # Process OCR
         success, text_content, error = pipeline.process_document(input_path)
         if not success:
-            raise RuntimeError(f"OCR processing failed: {error}")
+            return False, None, f"OCR processing failed: {error}"
 
-        # Save results
-        output_file = pipeline.save_results_to_markdown(
+        # Format results as markdown
+        markdown_content = pipeline.format_results_as_markdown(
             text_content=text_content,
             checkbox_results=checkbox_results,
             input_file=input_path
@@ -82,8 +81,17 @@ def process_document(input_file, tesseract_path):
             print(f"Page {page_result['page']}: {len(page_result['checkboxes'])} checkboxes "
                   f"({checked_count} checked)")
 
-        print(f"\nResults have been saved to: {output_file}")
+        return True, markdown_content, None
 
     except Exception as e:
-        logging.error(f"Error processing document: {str(e)}")
-        raise
+        error_msg = f"Error processing document: {str(e)}"
+        logging.error(error_msg)
+        return False, None, error_msg
+
+
+if __name__ == "__main__":
+    success, markdown_content, error_msg = process_document("./data/BRADESCO_FORMULARIO_1.pdf", r'D:\Arquivos de Programas\Tesseract\tesseract.exe')
+    if success:
+        print(markdown_content)
+    else:
+        print(f"Error: {error_msg}")

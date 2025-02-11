@@ -31,140 +31,172 @@ creation_date = "2025-02-11"
 </metadata>
 
 <persona>
-Sou um assistente de extração de dados não estruturados e que trabalha com documentos escritos em português.
-Sou capaz de compreender, organizar e extrair dados de forma estruturada e organizada.
-Minha função é somente organizar e extrair dados.
-Eu não possuo qualquer interface com o usuário, apenas com o documento em si.
+Você é um extrator de dados preciso e confiável, especializado em documentos do Bradesco.
 </persona>
 
 <goal>
-1. Ler o documento recebido;
-2. Extrair dados do documento;
-3. Organizar os dados em uma estrutura determinada pelo usuário;
-4. Retornar os dados organizados para o usuário;
+Extrair dados estruturados de documentos do Bradesco, mantendo a precisão e o formato exato dos dados.
 </goal>
 
 <instructions>
-1. Caso a query do usuário solicite algo diferente do indicado em <goal>, devo responder com uma mensagem que indique minha incapacidade de atender a essa query;
-2. Eu não devo citar a tag <metadata>;
-3. Eu não devo citar a tag <persona>;
-4. Eu não devo citar a tag <goal>;
-5. Eu não devo citar a tag <instructions>.
+Analise o texto em <raw-text> e extraia os dados conforme as regras abaixo:
+
+1. Formato: Retorne os dados em formato JSON, seguindo exatamente a estrutura fornecida.
+2. Campos vazios: Para campos não encontrados no documento, use uma string vazia ("").
+3. Checkboxes: Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações. Para campos de checkbox:
+   - Se encontrar marcação, retorne "Sim"
+   - Se encontrar checkbox não marcada, retorne "Não"
+   - Se não encontrar checkbox mas houver opções Sim/Não, retorne "N/A"
+4. E-mails: Corrija e-mails que:
+   - Contenham espaços (substitua por "_")
+   - Usem letras no lugar de "@" (substitua pela @)
+5. Valores monetários: Use formato "R$ X.XXX,XX"
+6. CPF/CNPJ: Mantenha pontuação (ex: 123.456.789-00)
+
+Estrutura de dados para extração:
+{input}
 </instructions>
 '''
 
+
 [user]
 financial_institution_detector = '''
+<user-instructions>
+Identifique a instituição financeira mencionada no texto abaixo:
+
 <raw-text>
 {input}
 </raw-text>
-
-<user-instructions>
-Identifique e retorne apenas o nome da instituição financeira mencionada em <raw-text> e me retorne em uma string.
 </user-instructions>
 '''
 
-
 bradesco_data_extractor = '''
+<user-instructions>
+Identifique e extraia os dados do seguinte texto:
+
 <raw-text>
 {input}
 </raw-text>
 
-<user-instructions>
-Identifique e extraia os seguintes dados de <raw-text>
-- Dados do 1º Comprador:
-    - Nome Completo:
-    - CPF/MF: # Exemplo de CPF: 928.064.123-00
-    - Profissão:
-    - E-mail: # Emails podem vir com um espaço em branco e com alguma letra no lugar de "@", por exemplo: "nagyla pollyanaQhotmail.com". Corrija estes casos, adicionando um "_" no lugar do espaço e "@" entre o nome e o domínio.
-    - Estado Civil: # Solteiro, Casado, Divorciado, Viuvo
-    - Campo obrigatório para quem não é casado. Vive em união estável? # Este campo é identificado por um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - É funcionário da Organização Bradesco ou parente de primeiro grau (pai ou filho)? # Este campo é identificado como um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - Se sim, informe código funcional: # Só será preenchido caso o usuário responda "Sim" no campo "É funcionário da Organização Bradesco ou parente de primeiro grau (pai ou filho)?"
-- Dados do 2º Comprador:
-    - Nome Completo:
-    - CPF/MF: # Exemplo de CPF: 928.064.123-00
-    - Profissão:
-    - E-mail: # Emails podem vir com um espaço em branco e com alguma letra no lugar de "@", por exemplo: "nagyla pollyanaQhotmail.com". Corrija estes casos, adicionando um "_" no lugar do espaço e "@" entre o nome e o domínio.
-    - Estado Civil: # Solteiro, Casado, Divorciado, Viuvo
-    - Campo obrigatório para quem não é casado. Vive em união estável? # Este campo é identificado por um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - É funcionário da Organização Bradesco ou parente de primeiro grau (pai ou filho)? # Este campo é identificado como um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - Se sim, informe código funcional: # Só será preenchido caso o usuário responda "Sim" no campo "É funcionário da Organização Bradesco ou parente de primeiro grau (pai ou filho)?"
-- Dados do 3º Comprador:
-    - Nome Completo:
-    - CPF/MF: # Exemplo de CPF: 928.064.123-00
-    - Profissão:
-    - E-mail: # Emails podem vir com um espaço em branco e com alguma letra no lugar de "@", por exemplo: "nagyla pollyanaQhotmail.com". Corrija estes casos, adicionando um "_" no lugar do espaço e "@" entre o nome e o domínio.
-    - Estado Civil: # Solteiro, Casado, Divorciado, Viuvo
-    - Campo obrigatório para quem não é casado. Vive em união estável? # Este campo é identificado por um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - É funcionário da Organização Bradesco ou parente de primeiro grau (pai ou filho)? # Este campo é identificado como um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - Se sim, informe código funcional: # Só será preenchido caso o usuário responda "Sim" no campo "É funcionário da Organização Bradesco ou parente de primeiro grau (pai ou filho)?"
-- Dados do 4º Comprador:
-    - Nome Completo:
-    - CPF/MF: # Exemplo de CPF: 928.064.123-00
-    - Profissão:
-    - E-mail: # Emails podem vir com um espaço em branco e com alguma letra no lugar de "@", por exemplo: "nagyla pollyanaQhotmail.com". Corrija estes casos, adicionando um "_" no lugar do espaço e "@" entre o nome e o domínio.
-    - Estado Civil: # Solteiro, Casado, Divorciado, Viuvo
-    - Campo obrigatório para quem não é casado. Vive em união estável? # Este campo é identificado por um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - É funcionário da Organização Bradesco ou parente de primeiro grau (pai ou filho)? # Este campo é identificado como um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - Se sim, informe código funcional: # Só será preenchido caso o usuário responda "Sim" no campo "É funcionário da Organização Bradesco ou parente de primeiro grau (pai ou filho)?"
-- Dados Bancários - Pagamento das Prestações:
-    - Autorizo o débito / pagamento do valor das parcelas por meio de: # Este campo é identificado por um checkbox.
-    - Para opção de pagamento das parcelas por meio débito em conta corrente, informar:
-    - Conta de titularidade do Comprador que autorizou o débito:
-        - Nome:
-        - Agência Débito Parcela:
-        - Conta Débito Parcela:
-        - Dígito Conta:
-        - Autorizo utilizar o limite de crédito, incluindo o Cheque Especial, se contratados, quando não houver saldo em conta: # Este campo é um checkbox. Preencher "Sim", caso o usuário marque esta opção e "Não", caso não identifique marcação da caixa de seleção.
-        - Autorizo o débito do valor da(s) parcela(s) vencida(s), inclusive de valor(es) parcial(is) (Os encargos serão incorporados nas parcelas seguintes, conforme detalhado em contrato): # Este campo é um checkbox. Preencher "Sim", caso o usuário marque esta opção e "Não", caso não identifique marcação da caixa de seleção.
-- Dados do(s) 1º Vendedor(es) Pessoa Física/Pessoa Jurídica:
-    - Nome Completo / Razão Social:
-    - CPF/CNPJ/MF:
-    - Profissão:
-    - E-mail:
-    - Estado Civil:
-    - Campo obrigatório para quem não é casado. Vive em união estável? # Este campo é identificado por um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - Forma de Recebimento: # Este campo é identificado por um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - Banco:
-    - Agência:
-    - Dígito:
-    - Conta:
-    - Dígito:
-- Dados do(s) 2º Vendedor(es) Pessoa Física/Pessoa Jurídica:
-    - Nome Completo / Razão Social:
-    - CPF/CNPJ/MF:
-    - Profissão:
-    - E-mail:
-    - Estado Civil:
-    - Campo obrigatório para quem não é casado. Vive em união estável? # Este campo é identificado por um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - Forma de Recebimento: # Este campo é identificado por um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - Banco:
-    - Agência:
-    - Dígito:
-    - Conta:
-    - Dígito:
-- Dados do Imóvel a ser Financiado
-    - Endereço:
-    - Número:
-    - Complemento:
-    - Quantidade de Vagas:
-    - N° de Vagas:
-    - Quantidade Depósito / Box:
-    - N° Depósito / Box:
-- Condições da Operação (todos os itens deste bloco são de preenchimento obrigatório):
-    - Valor da Compra/Venda: # Valor monetário, em R$. Exemplo de preenchimento: R$ 1.000.000,00
-    - Valor de Financiamento: # Valor monetário, em R$. Exemplo de preenchimento: R$ 1.000.000,00
-    - Irá utilizar o FGTS: # Este campo é identificado por um checkbox. Em <raw-text>, checkboxes preenchidas são identificadas com "[Y]", "Y]" ou variações dessa estrutura. Caso se depare com linhas que contenham "Sim" e "Não", mas que não venham acompanhadas do identificador de preenchimento, interprete que o usuário não respondeu a essa pergunta e preencha com "N/A".
-    - Prazo de Amortização: # Valor numérico, em meses. Exemplo de preenchimento: 360
-    - Dia base para pagamento das prestações (De 01 a 28): # É um campo textual. Exemplo: 30 DIAS APÓS A ASSINATURA DO CONTRATO
-    - Sistema de Amortização: # # Este campo é identificado por um checkbox. As opções de preenchimento são "SAC - Sistema de Amortização Constante" ou "Tabela PRICE".
-    - Deseja incluir despesas cartorárias no financiamento: # Este campo é identificado por um checkbox. As opções de preenchimento são "Sim" ou "Não".
-- Aceite Registro Eletrônico (Assinatura Digital): # Este campo é identificado por um checkbox. As opções de preenchimento são "Sim" ou "Não".
-- Declarações do (s) Comprador (es):
-    - O(s) Comprador(es) concordam com a dispensa? # Este campo é identificado por um checkbox. As opções de preenchimento são "Sim" ou "Não".
-    - Declaração de inexistência de débitos condominais: # Este campo é identificado por um checkbox. As opções de preenchimento são "Sim" ou "Não".
-    - Certidão Negativa de Impostos e Taxas Municipais: # Este campo é identificado por um checkbox. As opções de preenchimento são "Sim" ou "Não".
-    - Declaração de regularidade de foro (para imóveis foreiros): # Este campo é identificado por um checkbox. As opções de preenchimento são "Sim" ou "Não".
-'''
+Retorne os dados exatamente neste formato JSON, preenchendo os valores conforme encontrados no texto:
 
+{{
+    "dados_do_1o_comprador": {{
+        "nome_completo": "",
+        "cpf_mf": "",
+        "profissao": "",
+        "e_mail": "",
+        "estado_civil": "",
+        "campo_obrigatorio_para_quem_nao_e_casado_vive_em_uniao_estavel": "",
+        "e_funcionario_da_organizacao_bradesco_ou_parente_de_primeiro_grau_pai_ou_filho": "",
+        "se_sim_informe_codigo_funcional": ""
+    }},
+    "dados_do_2o_comprador": {{
+        "nome_completo": "",
+        "cpf_mf": "",
+        "profissao": "",
+        "e_mail": "",
+        "estado_civil": "",
+        "campo_obrigatorio_para_quem_nao_e_casado_vive_em_uniao_estavel": "",
+        "e_funcionario_da_organizacao_bradesco_ou_parente_de_primeiro_grau_pai_ou_filho": "",
+        "se_sim_informe_codigo_funcional": ""
+    }},
+    "dados_do_3o_comprador": {{
+        "nome_completo": "",
+        "cpf_mf": "",
+        "profissao": "",
+        "e_mail": "",
+        "estado_civil": "",
+        "campo_obrigatorio_para_quem_nao_e_casado_vive_em_uniao_estavel": "",
+        "e_funcionario_da_organizacao_bradesco_ou_parente_de_primeiro_grau_pai_ou_filho": "",
+        "se_sim_informe_codigo_funcional": ""
+    }},
+    "dados_do_4o_comprador": {{
+        "nome_completo": "",
+        "cpf_mf": "",
+        "profissao": "",
+        "e_mail": "",
+        "estado_civil": "",
+        "campo_obrigatorio_para_quem_nao_e_casado_vive_em_uniao_estavel": "",
+        "e_funcionario_da_organizacao_bradesco_ou_parente_de_primeiro_grau_pai_ou_filho": "",
+        "se_sim_informe_codigo_funcional": ""
+    }},
+    "dados_bancarios_pagamento_das_prestacoes": {{
+        "autorizo_o_debito_pagamento_do_valor_das_prestacoes_por_meio_de": "",
+        "para_opcao_de_pagamento_das_prestacoes_por_meio_debito_em_conta_corrente_informar": "",
+        "conta_de_titularidade_do_comprador_que_autorizou_o_debito": "",
+        "nome": "",
+        "agencia_debito_parcela": "",
+        "conta_debito_parcela": "",
+        "digito_conta": "",
+        "autorizo_utilizar_o_limite_de_credito_incluindo_o_cheque_especial_se_contratados_quando_nao_houver_saldo_em_conta": "",
+        "autorizo_o_debito_do_valor_da_s_prestacao_s_vencida_s_inclusive_de_valor_es_parcial_is_os_encargos_serao_incorporados_nas_prestacoes_seguintes_conforme_detalhado_em_contrato": ""
+    }},
+    "dados_do_s_1o_vendedor_es_pessoa_fisica_pessoa_juridica": {{
+        "nome_completo_razao_social": "",
+        "cpf_cnpj_mf": "",
+        "profissao": "",
+        "e_mail": "",
+        "estado_civil": "",
+        "campo_obrigatorio_para_quem_nao_e_casado_vive_em_uniao_estavel": "",
+        "forma_de_recebimento": "",
+        "banco": "",
+        "agencia": "",
+        "digito": "",
+        "conta": "",
+        "digito": ""
+    }},
+    "dados_do_s_2o_vendedor_es_pessoa_fisica_pessoa_juridica": {{
+        "nome_completo_razao_social": "",
+        "cpf_cnpj_mf": "",
+        "profissao": "",
+        "e_mail": "",
+        "estado_civil": "",
+        "campo_obrigatorio_para_quem_nao_e_casado_vive_em_uniao_estavel": "",
+        "forma_de_recebimento": "",
+        "banco": "",
+        "agencia": "",
+        "digito": "",
+        "conta": "",
+        "digito": ""
+    }},
+    "dados_do_imovel_a_ser_financiado": {{
+        "endereco": "",
+        "numero": "",
+        "complemento": "",
+        "quantidade_de_vagas": "",
+        "n_de_vagas": "",
+        "quantidade_deposito_box": "",
+        "n_deposito_box": ""
+    }},
+    "condicoes_da_operacao_todos_os_itens_deste_bloco_sao_de_preenchimento_obrigatorio": {{
+        "valor_da_compra_venda": "",
+        "valor_de_financiamento": "",
+        "ira_utilizar_o_fgts": "",
+        "prazo_de_amortizacao": "",
+        "dia_base_para_pagamento_das_prestacoes_de_01_a_28": "",
+        "sistema_de_amortizacao": "",
+        "deseja_incluir_despesas_cartorarias_no_financiamento": ""
+    }},
+    "aceite_registro_eletronico_assinatura_digital": "",
+    "declaracoes_do_s_comprador_es": {{
+        "o_s_comprador_es_concordam_com_a_dispensa": "",
+        "declaracao_de_inexistencia_de_debitos_condominiais": "",
+        "certidao_negativa_de_impostos_e_taxas_municipais": "",
+        "declaracao_de_regularidade_de_foro_para_imoveis_foreiros": ""
+    }}
+}}
+
+Observações importantes:
+1. Para campos não encontrados no documento, use uma string vazia ("").
+2. Para campos de checkbox:
+   - Se encontrar marcação ([Y], Y] ou variações), retorne "Sim"
+   - Se encontrar checkbox não marcada, retorne "Não"
+   - Se não encontrar checkbox mas houver opções Sim/Não, retorne "N/A"
+3. Para e-mails:
+   - Substitua espaços por "_"
+   - Substitua letras usadas no lugar de "@" pelo próprio "@"
+4. Para valores monetários, use o formato "R$ X.XXX,XX"
+5. Para CPF/CNPJ, mantenha a pontuação (ex: 123.456.789-00)
+</user-instructions>
+'''
